@@ -40,7 +40,7 @@ const Navbar = () => {
     };
 
   return (
-    <nav className="bg-green-400 text-white p-4">
+    <nav className="bg-cyan-500 text-white p-4">
       <div className='max-w-7xl mx-auto flex justify-between items-center'>
         <div className="text-2xl font-bold">
           <Link to="/">Opal</Link>
@@ -49,7 +49,7 @@ const Navbar = () => {
           {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
         </div>
         <ul
-          className={`flex flex-col md:flex-row md:space-x-10 absolute md:static bg-blue-600 md:bg-transparent w-full md:w-auto left-0 p-4 md:p-0 transition-all duration-300 ease-in-out ${
+          className={`flex flex-col md:flex-row md:space-x-10 absolute md:static bg-cyan-500 md:bg-transparent w-full md:w-auto left-0 p-4 md:p-0 transition-all duration-300 ease-in-out ${
             isOpen ? 'top-16' : '-top-96'
           }`}
         >

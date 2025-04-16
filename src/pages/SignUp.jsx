@@ -32,7 +32,7 @@ const SignUp = () => {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100">
+    <div className="flex items-center justify-center min-h-screen bg-white">
       <form onSubmit={handleSubmit} className="bg-white p-8 rounded shadow-md w-full max-w-md">
         <h1 className="text-2xl font-bold mb-4 text-center">Sign Up</h1>
         
@@ -66,13 +66,13 @@ const SignUp = () => {
         {message && <p className="text-center text-sm mb-3 text-red-600">{message}</p>}
         <button
           type="submit"
-          className="w-full py-2 bg-green-600 text-white rounded hover:bg-green-500"
+          className="w-full py-2 bg-cyan-500 text-white rounded hover:bg-cyan-400"
           disabled={loading}
         >
           {loading ? 'Signing up...' : 'Sign Up'}
         </button>
         <p className="text-center text-sm mb-4">
-          Already have an account? <Link to="/login" className="text-green-600">Login</Link>
+          Already have an account? <Link to="/login" className="text-cyan-600">Login</Link>
         </p>
       </form>
     </div>

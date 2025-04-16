@@ -13,7 +13,7 @@ const PostList = () => {
 
   const fetchPosts = async () => {
     try {
-      const res = await axios.get(`${import.meta.env.VITE_URl}/api/posts/all`);
+      const res = await axios.get(`${import.meta.env.VITE_URl}/api/posts/all/`);
       setPosts(res.data.posts);
     } catch (error) {
       console.error(error);

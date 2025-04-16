@@ -30,7 +30,7 @@ const Login = () => {
       document.cookie = `token=${data.token}; path=/;`;
       setIsAuthenticated(true);
       setMessage('✅ Login successful!');
-      localStorage.setItem('userId', user._id);
+      localStorage.setItem('userId',(user._id) );
 
 
       navigate('/dashboard');
@@ -46,7 +46,7 @@ const Login = () => {
       <form onSubmit={handleSubmit} className="bg-white p-8 rounded shadow-md w-full max-w-md">
         <h1 className="text-2xl font-bold mb-4 text-center">Login</h1>
         <p className="text-center text-sm mb-4">
-          Don't have an account? <Link to="/signup" className="text-green-600">Sign Up</Link>
+          Don't have an account? <Link to="/signup" className="text-cyan-500">Sign Up</Link>
         </p>
         <input
           type="email"
@@ -69,7 +69,7 @@ const Login = () => {
         {message && <p className="text-center text-sm mb-3 text-red-600">{message}</p>}
         <button
           type="submit"
-          className="w-full py-2 bg-green-600 text-white rounded hover:bg-green-700"
+          className="w-full py-2 bg-cyan-500 text-white rounded hover:bg-cyan-400"
           disabled={loading}
         >
           {loading ? 'Logging in...' : 'Login'}
