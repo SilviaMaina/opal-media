@@ -30,7 +30,8 @@ const Login = () => {
       document.cookie = `token=${data.token}; path=/;`;
       setIsAuthenticated(true);
       setMessage('✅ Login successful!');
-      localStorage.setItem('userId',(user._id) );
+      console.log("Logged in user:", user);
+      localStorage.setItem('userId',(user._id) );// setting the user id after login
 
 
       navigate('/dashboard');

@@ -11,6 +11,7 @@ function CreatePost() {
   })
 
   const [featureInput, setFeatureInput] = useState("");
+  const userId = localStorage.getItem('userId');// get userid
 
   const convertBase64 = (file) => {
     return new Promise((resolve, reject) => {
@@ -22,10 +23,7 @@ function CreatePost() {
     });
   };
 
-  // const handleInputChange = (e) => {
-  //   const { caption, value } = e.target;
-  //   setPost((prev) => ({ ...prev, [caption]: value }));
-  // };
+  
   const handleFeatureAdd = () => {
     setPost((prev) => ({
       ...prev,
@@ -38,12 +36,12 @@ function CreatePost() {
   const uploadSingleImage = async (base64) => {
     setLoading(true);
     try {
-      // const authToken = localStorage.getItem("authToken");
+      
       const response = await fetch(`${import.meta.env.VITE_URL}/api/posts/uploadImage`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          // Authorization: `bearer ${authToken}`,
+          
         },
         body: JSON.stringify({ media: base64 }),
       });
@@ -75,22 +73,30 @@ function CreatePost() {
       uploadSingleImage(base64);
     }
   };
+  const postWithUserId = {
+    ...post,
+    userId, // ✅ Include the userId here
+  };
+  console.log(userId)
+
+
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      // const authToken = localStorage.getItem("authToken");
+     
       const response = await fetch(`${import.meta.env.VITE_URL}/api/posts/create`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          // Authorization: `bearer ${authToken}`,
+          
         },
-        body: JSON.stringify(post),
+        body: JSON.stringify(postWithUserId),
       });
       if (response.ok) {
         toast.success("Product created successfully!");
 
-        // Reset the product state to clear input fields
+       
       setPost({
         caption: "",
         media: "",
@@ -159,20 +165,8 @@ function CreatePost() {
       </div>
 
       <form onSubmit={handleSubmit}>
-      <div className="grid gap-4 grid-cols-1 md:grid-cols-2">
-          <div>
-            <label className="block mb-2">Caption</label>
-            <input
-              type="text"
-              name="name"
-              value={post.caption}
-              onChange={(e) => setPost(e.target.value)}
-              className="w-full p-2 border border-gray-300 rounded-lg"
-              required
-            />
-          </div>
 
-          <div className="md:col-span-2">
+      <div className="md:col-span-2">
             <label className="block mb-2">Image Upload</label>
             <UploadInput />
             {url && (
@@ -183,7 +177,21 @@ function CreatePost() {
                 </a>
               </div>
             )}
+          </div>  
+      <div className="grid gap-4 grid-cols-1 md:grid-cols-2">
+          <div>
+            <label className="block mb-2">Caption</label>
+            <input
+              type="text"
+              name="name"
+              value={post.caption}
+              onChange={(e) => setPost((prev) => ({ ...prev, caption: e.target.value }))}
+              className="w-full p-2 border border-gray-300 rounded-lg"
+              required
+            />
           </div>
+
+          
         
          </div> 
 
